@@ -1,16 +1,7 @@
 
 // Instantiates array of super cool nineties bands for the game
 var ninetiesBands = [ 
-    "Nirvana",
-    "Alice In Chains",
-    "Soundgarden",
-    "Green Day",
-    "Radiohead",
-    "Pearl Jam",
-    "REM",
-    "Foo Fighters",
-    "Red Hot Chili Peppers",
-    "Pantera",
+    "Nirvana", "Three Eleven", "Alanis Morissette", "Alice in Chains", "Bad Religion", "Beastie Boys", "Beck", "Bjork", "Blind Melon", "Blink", "Blur", "Bush", "Butthole Surfers", "Cake", "Candlebox", "Counting Crows", "Cowboy Junkies", "Cracker", "Creed", "Daft Punk", "Dave Matthews Band", "Depeche Mode", "Duran Duran", "Elastica", "EMF", "Eve Six", "Everclear", "Everlast", "Face to Face", "Faith No More", "Fastball", "Fatboy Slim", "Filter", "Fiona Apple", "Folk Implosion", "Foo Fighters", "Garbage", "Gin Blossoms", "Goldfinger", "Goo Goo Dolls", "Gravity Kills", "Green Day", "Harvey Danger", "Hole", "House of Pain", "James", "Jane's Addiction", "Jesus Jones", "Kid Rock", "King Missile", "Korn", "Len", "Lenny Kravitz", "Limp Bizkit", "Lit", "Live", "Lo Fidelity Allstars", "Local H", "Marcy Playground", "Marilyn Manson", "Matchbox Twenty", "Material Issue", "Mazzy Star", "Metallica", "MxPx", "Nine Inch Nails", "No Doubt", "Oasis", "Orgy", "Pearl Jam", "Pennywise", "PJ Harvey", "Primitive Radio Gods", "Primus", "REM", "Radiohead", "Rage Against the Machine", "Rancid", "Red Hot Chili Peppers", "Reel Big Fish", "Rob Zombie", "Save Ferris", "School of Fish", "Semisonic", "Silverchair", "Siouxsie and the Banshees", "Smash Mouth", "Sneaker Pimps", "Social Distortion", "Soul Asylum", "Soundgarden", "Sponge", "Squirrel Nut Zippers", "Stone Temple Pilots", "Sublime", "Sugar Ray", "Temple of the Dog", "The Breeders", "The Cardigans", "The Chemical Brothers", "The Cranberries", "The Crystal Method", "The Cure", "The Lemonheads", "The Living End", "The Mighty Mighty Bosstones", "The Offspring", "The Presidents of the United States of America", "The Primitives", "The Prodigy", "The Smashing Pumpkins", "The Sundays", "The Verve", "The Wallflowers", "Third Eye Blind", "Toadies", "Tool", "Tori Amos", "Weezer", "White Town", "White Zombie", 
 ];
 
 // Global variable instantiation so that these are available throughout the script; most will be defined in the startGame function
