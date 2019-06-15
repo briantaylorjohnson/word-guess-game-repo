@@ -1,8 +1,7 @@
-# T's 90s Band Guess Game
-Taylor's Word Guess Game for Homework 3 (Georgia Tech Coding Boot Camp)
+# T's 90s Band Guess Game 
 --------------------------------------------------------------------------------------------------------------------
 
-This project was created by Taylor Johnson for the Georgia Tech Coding Boot Camp.
+This project was created by Taylor Johnson for the Georgia Tech Coding Boot Camp - Homework #3.
 
 __*What this project does?*__
 
