@@ -141,8 +141,8 @@ else
                     losses++;
                     gameStarted = false;
 
-                    
                     document.getElementById("band-display").textContent = "Press any key to play again!";
+                    document.getElementById("your-losses").textContent = losses;
                     console.log("Game over! Out of guesses. Game over! Womp. Womp.");
                     alert("Game over! Out of guesses. Game over! Womp. Womp.");
                     
@@ -158,8 +158,9 @@ else
             if (didYouWinCounter == bandPicked.length)
             {
                 wins++;
+                gameStarted = false;  
                 document.getElementById("band-display").textContent = "Press any key to play again!";
-                gameStarted = false;   
+                document.getElementById("your-wins").textContent = wins; 
                 alert("You win! " + bandPicked + " totally rocks!");      
             }    
         }
