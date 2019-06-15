@@ -2,17 +2,50 @@
 <html lang="en-us">
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <title>T's 90's Band Guess Game</title>
     </head>
-    <body>
-        <h1>T's 90's Band Guess Game</h1>
-        <p id="band-display">Press any key to start game!</p>
-        <p>Number of guesses remaining: <span id="guesses-remaining"></span> </p>
-        <p>Letters Guessed: <span id="player-guesses"></span></p>
-        <p>Wins: <span id="your-wins"></span></p>
-        <p>Losses: <span id="your-losses"></span></p>
-
+    <body class="bg-dark text-light">
+        <div class="container mt-1 mr-1 ml-1 mb-3 text-center mx-auto">
+            <div class="row pt-4 pb-4">
+                <div class="col-md-12">
+                    <h1>T's 90's Band Guess Game</h1>
+                </div>
+            </div>
+            <div class="row pt-2 pb-2">
+                <div class="col-md-12">
+                    <img class="img-fluid" src="http://corinthianlodge.org/wp-content/uploads/2017/03/Ilove90s.png" alt="I love the 90s!">
+                </div>
+            </div>
+            <div class="row pt-4 pb-4">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 rounded-pill border border-warning">
+                    <h3 class="pt-2 pb-2" id="band-display">Press any key to start game!</h3>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Number of guesses remaining: <span id="guesses-remaining"></span> </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Letters Guessed: <span id="player-guesses"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Wins: <span id="your-wins"></span></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>Losses: <span id="your-losses"></span></p>
+                </div>
+            </div>
+        </div>
     <script src="assets/javascript/game.js"></script>
     <footer class="toesocks"></footer>
     </body>
