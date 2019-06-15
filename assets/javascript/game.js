@@ -21,7 +21,7 @@ var gameStarted = false; // Indicates if the game has started or not
 function bandPicker()
 {
     // Generates a random number which is used to pick the nineties band to be guessed by player
-    var bandPicker = Math.floor(Math.random() * 10);
+    var bandPicker = Math.floor(Math.random() * 123);
 
     // Picks a nineties band using the band picker
     bandPicked = ninetiesBands[bandPicker];
