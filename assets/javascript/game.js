@@ -285,7 +285,7 @@ document.onkeyup = function(guess)
             }
 
             // Pushes all valid player guesses to an array for validation of future guesses
-            playerGuessesArr.push(playerGuess);
+            playerGuessesArr.push(" " + playerGuess.toUpperCase());
 
             // Updates the DOM to display all his/her guesses for the current game; will reset when a new game is started
             document.getElementById("player-guesses").innerHTML = playerGuessesArr;
