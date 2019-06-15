@@ -1,5 +1,5 @@
 
-// Instantiate array of super cool nineties bands for the game
+// Instantiates array of super cool nineties bands for the game
 var ninetiesBands = [ 
     "Nirvana",
     "Alice In Chains",
@@ -96,11 +96,74 @@ function startGame() {
     console.log("Blanks String: " + blanksOutput);
     console.log(ninetiesBands);
 
-    // Returns boolean of true to indicate the game has started
+    // Returns boolean of true to indicate the game has been initialized
     return true;
 }
 
-// Validates that input is only letters, but does not work for shift, alt, ctrl, meta, or return
+// Function to determine if the player is a winner
+function isWinner()
+{
+    /*
+        This conditional statement compares the total number of valid, good guesses possible to the number of good guesses the player has -- didYouWinCounter. If the didyouWinCounter equals the total number of valid, good guesses possible, then the player has won the game.
+    */
+    if (didYouWinCounter == calculateBandNameLength(bandPicked))
+    {
+        // Increases the player's session wins by 1
+        wins++;
+
+        // Indicates that the game is now over and a new game will need to be started
+        gameStarted = false;  
+
+        // Updates the DOM to instruct the player on how to start a new game
+        document.getElementById("band-display").innerHTML = "Press any key to play again!";
+
+        // Updates the DOM with the current number of session wins
+        document.getElementById("your-wins").innerHTML = wins; 
+
+        // Alerts the player that the game is over because he/she has won
+        alert("You win! " + bandPicked + " totally rocks!");      
+
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+// Function to determine if the player is a loser
+function isLoser()
+{
+    // Checks to see if the player has any guesses remaining; if not, the game ends and the player loses
+    if(guessesRemaining == 0)
+    {
+        // Increases the player's session losses by 1
+        losses++;
+
+        // Indicates that the game is now over and a new game will need to be started
+        gameStarted = false;
+
+        // Updates the DOM to instruct the player on how to start a new game
+        document.getElementById("band-display").innerHTML = "Press any key to play again!";
+        
+        // Updates the DOM with the current number of session losses
+        document.getElementById("your-losses").innerHTML = losses;
+
+        // Prints to console that the game is over
+        console.log("Game over! Player has run out of guesses.");
+
+        // Alerts the player that the game is over because he/she has no more guesses
+        alert("Game over! Out of guesses. Game over! Womp. Womp.");
+        
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+// Function to validate that input is only letters, but does not work for shift, alt, ctrl, meta, or return
 function inputValidation(input) {
     var regExp = /^[A-Za-z]+$/;
 
@@ -212,7 +275,7 @@ document.onkeyup = function(guess)
 
             }
 
-            // If the player's valid guess is not in the band's name then they lose a try
+            // If the player's valid guess is not in the band's name then their number of allowed guesses decreases
             else {
 
                 // Decreases the guesses/tries the player has remaining by 1
@@ -225,29 +288,9 @@ document.onkeyup = function(guess)
                 // Updates the DOM with player's remaining guesses after a bad guess
                 document.getElementById("guesses-remaining").innerHTML = guessesRemaining;
 
-                // Checks to see if the player has any guesses remaining; if not, the game ends and the player loses
-                if(guessesRemaining == 0)
-                {
-                    // Increases the player's session losses by 1
-                    losses++;
-
-                    // Indicates that the game is now over and a new game will need to be started
-                    gameStarted = false;
-
-                    // Updates the DOM to instruct the player on how to start a new game
-                    document.getElementById("band-display").innerHTML = "Press any key to play again!";
-                    
-                    // Updates the DOM with the current number of session losses
-                    document.getElementById("your-losses").innerHTML = losses;
-
-                    // Prints to console that the game is over
-                    console.log("Game over! Player has run out of guesses.");
-
-                    // Alerts the player that the game is over because he/she has no more guesses
-                    alert("Game over! Out of guesses. Game over! Womp. Womp.");
-                    
-                }
-
+                // Checks to see if the player has lost by calling the isLoser() function
+                isLoser();
+                
             }
 
             // Pushes all valid player guesses to an array for validation of future guesses
@@ -261,28 +304,8 @@ document.onkeyup = function(guess)
             console.log("All of Player's Guesses: " + playerGuessesArr);
             console.log("Number of Correct Guesses: " + didYouWinCounter);
         
-            // Determines if the player has won the game with his/her most recent guess
-            
-            /*
-            This conditional statement compares the total number of valid, good guesses possible to the number of good guesses the player has -- didYouWinCounter. If the didyouWinCounter equals the total number of valid, good guesses possible, then the player has won the game.
-            */
-            if (didYouWinCounter == calculateBandNameLength(bandPicked))
-            {
-                // Increases the player's session wins by 1
-                wins++;
-
-                // Indicates that the game is now over and a new game will need to be started
-                gameStarted = false;  
-
-                // Updates the DOM to instruct the player on how to start a new game
-                document.getElementById("band-display").innerHTML = "Press any key to play again!";
-
-                // Updates the DOM with the current number of session wins
-                document.getElementById("your-wins").innerHTML = wins; 
-
-                // Alerts the player that the game is over because he/she has won
-                alert("You win! " + bandPicked + " totally rocks!");      
-            }    
+            // Determines if the player has won the game with his/her most recent guess by calling the isWinner() function
+            isWinner();
         }
         
         // If the player has entered alpha character, then this alert the player to pick a letter (not a symbol or special character/key
