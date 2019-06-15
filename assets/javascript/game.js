@@ -16,10 +16,15 @@ var ninetiesBands = [
 // Global variable instantiation so that these are available throughout the program
 var bandPicker;
 var bandPicked;
+var bandPickedLC;
 var blanksArr = [];
 var userGuessesArr = [];
 var blanksOutput = "";
-var guessesRemaining;
+var guessesRemaining = 9;
+var didYouWinCounter = 0;
+var gameStarted = false;
+var wins = 0
+var losses = 0;
 
 // Function to start the game by displaying the blanks to the user and picking a nineties band from the array randomly
 function startGame() {
@@ -27,11 +32,16 @@ function startGame() {
     userGuessesArr = [];
     bandPicker = Math.floor(Math.random() * 10);
     bandPicked = ninetiesBands[bandPicker];
+    blanksArr = [];
+    blanksOutput = "";
+    didYouWinCounter = 0;
+    gameStarted = true;
 
     // Calculates the length of the band's name
     var bandPickedLength = bandPicked.length;
 
     // Console output to check that the array is populated and that a nineties band is being picked
+    console.log("Game Started: " + gameStarted);
     console.log("Band Picked: " + bandPicked);
     console.log("Band Picked Index: " + bandPicker);
     console.log("Band Picked Length: " + bandPickedLength);
@@ -42,6 +52,12 @@ function startGame() {
         blanksArr.push("_");
         blanksOutput = blanksOutput + blanksArr[i] + " ";
     }
+
+    // Updates DOM to display the blanks to the user in the browser window
+    document.getElementById("band-display").textContent = blanksOutput;
+    document.getElementById("guesses-remaining").textContent = guessesRemaining;
+    document.getElementById("user-guesses").textContent = userGuessesArr;
+    
     return blanksOutput, blanksArr;
 }
 
@@ -57,54 +73,103 @@ function inputValidation(input) {
     }
 }
 
-// Starts the game with startGame function
-startGame();
-
-// Updates DOM to display the blanks to the user in the browser window
-document.getElementById("band-display").textContent = blanksOutput;
-console.log(blanksArr);
+console.log("Game Started: " + gameStarted);
 
 // Begins to track key strokes as the user guesses letters one at a time; also validates that only letters are entered
 document.onkeyup = function(guess) {
+
+if (gameStarted == false)
+{
+    // Starts the game by invoking the startGame function
+    startGame();
+}
+
+else
+{
     userGuess = guess.key;
     userGuess = userGuess.toLowerCase();
 
-    if (inputValidation(userGuess) == true && userGuess != "shift" && userGuess != "meta" && userGuess != "alt" && userGuess != "control" ) {
-        console.log("User's guess: " + userGuess);
-        userGuessesArr.push(userGuess);
-        document.getElementById("user-guesses").textContent = userGuessesArr;
-        console.log("User Guesses: " + userGuessesArr);
+    if (guessesRemaining != 0)
+    {
+        if (inputValidation(userGuess) == true && userGuess != "shift" && userGuess != "meta" && userGuess != "alt" && userGuess != "control" && userGuess != "enter" )
+        {
+            multipleLetters = false;
 
+            // 
+            bandPickedLC = bandPicked.toLowerCase();
 
-        bandPicked = bandPicked.toLowerCase();
+            if (bandPickedLC.includes(userGuess) == true) {
+                console.log("Good guess!");
 
-        if (bandPicked.includes(userGuess) == true) {
-            console.log("Good guess!");
+                var guessIndex = bandPicked.indexOf(userGuess);
+                console.log("Index of User Guess in Band: " + guessIndex);
 
-            var guessIndex = bandPicked.indexOf(userGuess);
-            console.log("Index of User Guess in Band: " + guessIndex);
+                //Loop through band picked (in lowercase) to find the index of matches and put those in an array locally
+                for (i = 0; i < bandPickedLC.length; i++)
+                {
+                    blanksOutput = "";
+                    
+                    if(userGuess === bandPickedLC.charAt(i))
+                    {
+                            
+                        blanksArr[i] = bandPicked.charAt(i);
+                            
+                        for (j = 0; j < bandPicked.length; j++)
+                        {
+                            blanksOutput = blanksOutput + blanksArr[j] + " ";
+                        }
 
+                        document.getElementById("band-display").textContent = blanksOutput;
+                        didYouWinCounter++;                  
+                    }
+                    
+                }
+
+                console.log("New Blanks Arr: " + blanksArr);
+                console.log("New Blanks: " + blanksOutput);
+
+            }
+            else {
+                guessesRemaining--;
+                console.log("Wrong!");
+                console.log("Guesses Remaining: " + guessesRemaining);
+                
+                document.getElementById("guesses-remaining").textContent = guessesRemaining;
+
+                if(guessesRemaining == 0)
+                {
+                    losses++;
+                    gameStarted = false;
+
+                    
+                    document.getElementById("band-display").textContent = "Press any key to play again!";
+                    console.log("Game over! Out of guesses. Game over! Womp. Womp.");
+                    alert("Game over! Out of guesses. Game over! Womp. Womp.");
+                    
+                }
+
+            }
+            userGuessesArr.push(userGuess);
+            document.getElementById("user-guesses").textContent = userGuessesArr;
+            console.log("User's guess: " + userGuess);
+            console.log("User Guesses: " + userGuessesArr);
+            console.log("Number of Correct Guesses: " + didYouWinCounter);
+        
+            if (didYouWinCounter == bandPicked.length)
+            {
+                wins++;
+                document.getElementById("band-display").textContent = "Press any key to play again!";
+                gameStarted = false;   
+                alert("You win! " + bandPicked + " totally rocks!");      
+            }    
         }
         else {
-            guessesRemaining--;
-            console.log("Wrong!");
-            console.log("Guesses Remaining: " + guessesRemaining);
-            document.getElementById("guesses-remaining").textContent = guessesRemaining;
-
+            alert("You didn't enter a letter. Please only enter letters!");
         }
-        
     }
-    else {
-        alert("You didn't enter a letter. Please only enter letters!");
+    else
+    {
+
     }
-
-    if (guessesRemaining == 0) {
-        console.log("Game over!");
-        alert("Out of guesses. Game over! Womp. Womp.");
-        startGame();
-    }
-} 
-
-
-
-
+}
+};
