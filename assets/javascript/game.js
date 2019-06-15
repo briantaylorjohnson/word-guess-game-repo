@@ -211,7 +211,7 @@ document.onkeyup = function(guess)
         playerGuess = playerGuess.toLowerCase();
 
         // Validates that the player's current guess has not already been used
-        if (playerGuessesArr.includes(playerGuess) == true)
+        if (playerGuessesArr.includes((" " + playerGuess)) == true)
         {
             // Alerts the player that the letter they entered has already been guessed
             alert("You already guessed this letter. Try again!");
@@ -288,7 +288,7 @@ document.onkeyup = function(guess)
             playerGuessesArr.push(" " + playerGuess);
 
             // Updates the DOM to display all his/her guesses for the current game; will reset when a new game is started
-            document.getElementById("player-guesses").innerHTML = playerGuessesArr();
+            document.getElementById("player-guesses").innerHTML = playerGuessesArr;
 
             // Prints to console the player's current guess, all guesses for current game, and number of correct guesses for debugging
             console.log("Player's Current Guess: " + playerGuess);
