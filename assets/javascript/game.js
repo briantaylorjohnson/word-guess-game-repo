@@ -144,7 +144,7 @@ function isLoser()
         console.log("Game over! Player has run out of guesses.");
 
         // Alerts the player that the game is over because he/she has no more guesses
-        alert("Game over! Out of guesses. Game over! Womp. Womp.");
+        alert("Game over! Out of guesses. The band was " + bandPicked + "!");
         
         return true;
     }
